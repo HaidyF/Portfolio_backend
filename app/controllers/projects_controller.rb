@@ -20,10 +20,10 @@ class ProjectsController < ApplicationController
         end
     end
 
-    def delete
+    def destroy
         project = Project.find(params[:id])
-        proejct.destroy
-        render json: {message: "Successfully deleted #{project.name}!"}
+        project.destroy
+        render json: {message: "Successfully deleted #{project.title}!"}
     end
 
     private
