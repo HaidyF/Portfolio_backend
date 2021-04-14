@@ -20,15 +20,16 @@ class ProjectsController < ApplicationController
         end
     end
 
-    def update
-        if @project.update(project_params)
-            render json: @project
-        else
-            render json: @project.errors
-        end
-    end
-
     def delete
-
+        project = Project.find(params[:id])
+        proejct.destroy
+        render json: {message: "Successfully deleted #{project.name}!"}
     end
+
+    private
+
+    def project_params
+        params.require(:project).permit(:title, :quote, :description, :image_URL, :location, :year, :category_id)
+    end
+
 end
